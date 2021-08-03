@@ -1,0 +1,46 @@
+<nav
+  class="app-nav-container d-flex justify-content-around align-items-center"
+>
+  <!-- app icon -->
+
+  <!-- navigation -->
+  <section>
+    <ul class="nav-items-wrapper">
+      <li
+        class="nav-item"
+        [ngClass]="{ 'nav-item-active': hasRouterKey('/dashboard') }"
+        routerLink="/dashboard"
+      >
+        Dashboard
+      </li>
+      <li
+        class="nav-item"
+        [ngClass]="{ 'nav-item-active': hasRouterKey('/games') }"
+        routerLink="/games"
+      >
+       Games
+      </li>
+      <li
+        class="nav-item"
+        [ngClass]="{ 'nav-item-active': hasRouterKey('capabilities') }"
+        routerLink="/landing/capabilities"
+      >
+        Logics
+      </li>
+      <li
+        class="nav-item"
+        [ngClass]="{ 'nav-item-active': hasRouterKey('faq') }"
+        routerLink="/landing/faq"
+      >
+        FAQ
+      </li>
+      <li
+        class="nav-item"
+        [ngClass]="{ 'nav-item-active': hasRouterKey('contact') }"
+        routerLink="/landing/contact"
+      >
+        Contact
+      </li>
+    </ul>
+  </section>
+</nav>

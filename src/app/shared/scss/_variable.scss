@@ -1,0 +1,86 @@
+@import url("https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap");
+
+// font family
+$font-family-oxygen: "Oxygen", sans-serif;
+
+// app-colors
+$app-blue: rgba(0, 0, 255);
+$app-red: rgba(255, 0, 0);
+
+$app-success: #7bd931;
+$app-failed:  $app-red;
+$app-warning: #ed986f;
+$app-unknown: #c4c4c4;
+$app-pending: #ffa217;
+
+$app-primary: #ff6317;
+
+$app-black: rgba(0, 0, 0);
+$app-black-5: rgba(0, 0, 0, .05);
+$app-black-10: rgba(0, 0, 0, .1);
+$app-black-20: rgba(0, 0, 0, .2);
+$app-black-30: rgba(0, 0, 0, .3);
+$app-black-40: rgba(0, 0, 0, .4);
+$app-black-50: rgba(0, 0, 0, .5);
+$app-black-60: rgba(0, 0, 0, .6);
+$app-black-70: rgba(0, 0, 0, .7);
+$app-black-80: rgba(0, 0, 0, .8);
+$app-black-90: rgba(0, 0, 0, .9);
+
+
+$app-white: rgba(255, 255, 255);
+$app-white-5: rgba(255, 255, 255, .05);
+$app-white-10: rgba(255, 255, 255, .1);
+$app-white-20: rgba(255, 255, 255, .2);
+$app-white-30: rgba(255, 255, 255, .3);
+$app-white-40: rgba(255, 255, 255, .4);
+$app-white-50: rgba(255, 255, 255, .5);
+$app-white-70: rgba(255, 255, 255, .7);
+$app-white-80: rgba(255, 255, 255, .8);
+$app-white-90: rgba(255, 255, 255, .9);
+
+$app-secondary: rgba(11, 33, 64);
+$app-secondary-5: rgba(11, 33, 64, .05);
+$app-secondary-10: rgba(11, 33, 64, .1);
+$app-secondary-20: rgba(11, 33, 64, .2);
+$app-secondary-30: rgba(11, 33, 64, .3);
+$app-secondary-40: rgba(11, 33, 64, .4);
+$app-secondary-50: rgba(11, 33, 64, .5);
+$app-secondary-60: rgba(11, 33, 64, .6);
+$app-secondary-70: rgba(11, 33, 64, .7);
+$app-secondary-80: rgba(11, 33, 64, .8);
+$app-secondary-90: rgba(11, 33, 64, .9);
+
+// border
+$border-color: #CFD3D9;
+
+// shadow
+$base-card: $app-black-10;
+$medium-card: rgba(99, 148, 197, .15);
+$faq-card: rgba(126, 126, 126, .15);
+$large-card: rgba(63, 63, 63, .02);
+$soft-card: rgba(109, 91, 91, .25);
+$benfit-card: rgba(126, 126, 126, .15);
+
+
+// font size
+$font-size-xxxlg: 48px;
+$font-size-xxlg: 32px;
+$font-size-xlg: 28px;
+$font-size-24: 24px;
+$font-size-lg: 22px;
+$font-size-20: 20px;
+$font-size-md: 18px;
+$font-size-n: 16px;
+$font-size-sm: 14px;
+$font-size-13: 13px;
+$font-size-xs: 12px;
+$font-size-xxs: 10px;
+$font-size-xxxs: 8px;
+
+// font weight
+$font-thin: 300;
+$font-normal: 400;
+$font-bold: 500;
+$font-extra-bold: 700;
+

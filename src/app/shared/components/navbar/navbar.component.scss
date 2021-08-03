@@ -1,0 +1,33 @@
+@import 'src/styles';
+
+.app-nav-container {
+  background-color: $app-black;
+  height: 85px;
+
+  .nav-items-wrapper {
+    @include no-margin-padding();
+    display: flex;
+    list-style-type: none;
+  }
+
+  .nav-item {
+    @include base-text(
+      $color: $app-white,
+      $letter-spacing: 1px,
+      $font-weight: $font-extra-bold,
+      $text-transform: uppercase
+    );
+    cursor: pointer;
+    list-style: 20px;
+    margin: auto 26px;
+
+    &:hover {
+      color: $app-primary;
+    }
+  }
+
+  .nav-item-active {
+    color: $app-primary;
+  }
+
+}

@@ -1,0 +1,326 @@
+@import 'function';
+@import 'variable';
+
+// scss-lint:disable VendorPrefix
+@mixin app-icon($color: $app-secondary, $font-size: 44px, $type: 'normal') {
+  color: $color;
+
+  @if $type == 'normal' {
+    font-size: $font-size;
+  } @else if $type == 'outline' {
+    border: 2px solid $color;
+    border-radius: $font-size;
+    font-size: $font-size / 2;
+    padding: $font-size / 4;
+  }
+}
+
+@mixin font-size($size) {
+  // scss-lint:disable ImportantRule
+  // font-size: $size !important
+  font-size: calculaterem($size) !important;
+   // scss-lint:enable ImportantRule
+}
+
+@mixin alpha-attribute($attribute, $color, $opacity: .1) {
+  #{$attribute}: $color;
+  #{$attribute}: rgba($color, $opacity);
+}
+
+@mixin no-margin-padding() {
+  margin: 0;
+  padding: 0;
+}
+
+@mixin pseudo($display: block, $pos: absolute, $content: '') {
+  content: $content;
+  display: $display;
+  position: $pos;
+}
+
+@mixin input-placeholder {
+  &.placeholder {
+    @content;
+  }
+
+  &::-moz-placeholder {
+    @content;
+  }
+
+  &::-moz-placeholder {
+    @content;
+  }
+
+  &:-ms-input-placeholder {
+    @content;
+  }
+
+  &::-webkit-input-placeholder {
+    @content;
+  }
+}
+
+@mixin truncate($truncation-boundary) {
+  max-width: $truncation-boundary;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin responsive-ratio($x, $y, $pseudo: false) {
+  $padding: unquote(($y / $x) * 100 + '%');
+
+  @if $pseudo {
+    &::before {
+      @include pseudo($pos: relative);
+      padding-top: $padding;
+      width: 100%;
+    }
+  } @else {
+    padding-top: $padding;
+  }
+}
+
+@mixin align($vertical: true, $horizontal: false, $position: relative) {
+  @if $position {
+    position: $position;
+  }
+
+  @if $vertical {
+    top: 50%;
+  }
+
+  @if $horizontal {
+    left: 50%;
+  }
+
+  @if $vertical and $horizontal {
+    transform: translateX(-50%) translateY(-50%);
+  } @else if $vertical {
+    transform: translateY(-50%);
+  } @else {
+    transform: translateX(-50%);
+  }
+}
+
+@mixin data-panel(
+  $width: 500px,
+  $height: auto,
+  $border-radius: 5px,
+  $border-highlight: none,
+  $border-highlight-color: none,
+  $highlight-height: 8px
+) {
+  width: $width;
+  min-height: $height;
+  padding: 15px;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+
+  @if $border-highlight == 'left' {
+    border-left: $highlight-height solid $border-highlight-color;
+  } @else if $border-highlight == 'top' {
+    border-top: $highlight-height solid $border-highlight-color;
+  }
+}
+
+@mixin base-button(
+  $width: auto,
+  $height: auto,
+  $padding: 15px 24px,
+  $border-radius: 4px,
+  $btn-color: $app-primary,
+  $font-size: $font-size-n,
+  $font-weight: $font-extra-bold,
+  $font-color: $app-white,
+  $letter-spacing: normal,
+  $line-height: normal,
+  $text-transform: capitalize,
+  $type: 'normal',
+  $border-color: $btn-color,
+  $darker-btn: darker($btn-color)
+) {
+  cursor: pointer;
+  width: $width;
+  height: $height;
+  padding: $padding;
+  font-weight: $font-weight;
+  letter-spacing: $letter-spacing;
+  line-height: $line-height;
+  text-transform: $text-transform;
+
+  @include font-size($font-size);
+
+  border: 2px solid $border-color;
+  border-radius: $border-radius;
+
+  @if $type == 'normal' {
+    background-color: $btn-color;
+    color: $font-color;
+
+    &:hover {
+      background-color: $darker-btn;
+      border-color: $darker-btn;
+    }
+
+    &:active {
+      // scss-lint:disable ImportantRule
+      background-color: $btn-color !important;
+      border-color: $btn-color !important;
+      // scss-lint:enable ImportantRule
+    }
+  } @else if $type == 'outline' {
+    background-color: transparent;
+    color: $btn-color;
+
+    &:hover {
+      background-color: $btn-color;
+      color: $font-color;
+    }
+  } @else {
+    @warn 'Button type supports: normal, outline';
+  }
+}
+
+@mixin box-shadow($top, $left, $blur, $spread, $color, $inset: false) {
+  @if $inset {
+    -moz-box-shadow: inset $top $left $blur $spread $color;
+    -webkit-box-shadow: inset $top $left $blur $spread $color;
+    box-shadow: inset $top $left $blur $spread $color;
+  } @else {
+    -moz-box-shadow: $top $left $blur $spread $color;
+    -webkit-box-shadow: $top $left $blur $spread $color;
+    box-shadow: $top $left $blur $spread $color;
+  }
+}
+
+@mixin background-gradient($orientation, $start-color, $end-color) {
+  @if $orientation == 'vertical' {
+    background: $start-color;
+    background: -moz-linear-gradient(top, $start-color 0%, $end-color 100%);
+    background: -webkit-linear-gradient(top, $start-color 0%, $end-color 100%);
+    background: linear-gradient(to bottom, $start-color 0%, $end-color 100%);
+    filter: progid:dximagetransform.microsoft.gradient(start-colorstr='$start-color', end-colorstr='$end-color', gradienttype=0);
+  } @else if $orientation == 'horizontal' {
+    background: $start-color;
+    background: -moz-linear-gradient(left, $start-color 0%, $end-color 100%);
+    background: -webkit-linear-gradient(left, $start-color 0%, $end-color 100%);
+    background: linear-gradient(to right, $start-color 0%, $end-color 100%);
+    filter: progid:dximagetransform.microsoft.gradient(start-colorstr='$start-color', end-colorstr='$end-color', gradienttype=1);
+  } @else if $orientation == 'diagonalUp' {
+    background: $start-color;
+    background: -moz-linear-gradient(45deg, $start-color 0%, $end-color 100%);
+    background: -webkit-linear-gradient(45deg, $start-color 0%, $end-color 100%);
+    background: linear-gradient(45deg, $start-color 0%, $end-color 100%);
+    filter: progid:dximagetransform.microsoft.gradient(start-colorstr='$start-color', end-colorstr='$end-color', gradienttype=1);
+  } @else if $orientation == 'diagonalDown' {
+    background: $start-color;
+    background: -moz-linear-gradient(-45deg, $start-color 0%, $end-color 100%);
+    background: -webkit-linear-gradient(-45deg, $start-color 0%, $end-color 100%);
+    background: linear-gradient(135deg, $start-color 0%, $end-color 100%);
+    filter: progid:dximagetransform.microsoft.gradient(start-colorstr='$start-color', end-colorstr='$end-color', gradienttype=1);
+  } @else {
+    @warn 'Orientation mixin supports: vertical, horizontal, diagonalUp, diagonalDown';
+  }
+}
+
+@mixin absolute-position {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+// scss-lint:disable SelectorDepth
+@mixin tables($border-radius: 0, $stripped: false, $opacity: false) {
+  table {
+    border-radius: $border-radius;
+    overflow: hidden;
+
+    .ant-table-thead tr th {
+      @include base-text(
+        $app-secondary-70,
+        $font-size-xs,
+        160%,
+        $font-extra-bold,
+        uppercase
+      );
+
+      padding: 10px;
+
+      @if $opacity {
+        opacity: $opacity;
+      }
+    }
+
+    .ant-table-tbody td {
+      @include base-text($app-black-70, $font-size-xs, 160%);
+      @include font-size($font-size-xs);
+
+      padding: 10px;
+      // border: 0;
+    }
+
+    @if $stripped {
+      .ant-table-tbody tr:nth-child(even) {
+        background-color: $table-td-color;
+      }
+
+      .ant-table-tbody tr:nth-child(odd) {
+        background-color: $app-white;
+      }
+    }
+  }
+}
+// scss-lint:disable SelectorDepth
+
+@mixin base-text(
+  $color: $app-secondary,
+  $font-size: $font-size-n,
+  $letter-spacing: normal,
+  $font-weight: normal,
+  $text-transform: none,
+  $line-height: normal
+) {
+  color: $color;
+  font-family: $font-family-oxygen;
+  font-size: $font-size;
+  font-weight: $font-weight;
+  text-transform: $text-transform;
+  letter-spacing: $letter-spacing;
+  line-height: $line-height;
+}
+
+@mixin base-input(
+  $font-size: 14px,
+  $border-radius: 4px,
+  $border-color: $app-secondary-30,
+  $border-width: 2px,
+  $width: 100%,
+  $height: 50px,
+  $padding: 16px,
+  $font-weight: $font-extra-bold,
+  $text-transform: none
+) {
+  border: $border-width solid $border-color;
+  border-radius: $border-radius;
+  width: $width;
+  height: $height;
+  padding: $padding;
+  font-weight: $font-weight;
+  font-size: $font-size;
+  text-transform: $text-transform;
+
+  &:hover {
+    border-color: $app-secondary;
+  }
+
+  &:focus {
+    @include box-shadow(0, 0, 10px, 5px, $grey-xlt);
+    border-color: $app-secondary;
+    outline: none;
+  }
+}
+
+// scss-lint:enable VendorPrefix
