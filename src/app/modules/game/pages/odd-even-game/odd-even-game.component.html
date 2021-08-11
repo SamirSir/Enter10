@@ -1,1 +1,20 @@
-<p>odd-even-game works!</p>
+<main>
+  <section>
+    <app-game-control
+      (intervalFired)="updateNumberList($event)"
+      (resetInterval)="resetNumberList($event)"
+    ></app-game-control>
+  </section>
+  <hr />
+  <section class="row">
+    <div class="col-sm-6 text-center text-secondary">
+      <h3>Odd Number List</h3>
+      <app-odd *ngFor="let num of oddNumbers" [oddNumber]="num"></app-odd>
+    </div>
+
+    <div class="col-sm-6 text-center text-primary">
+      <h3>Even number list</h3>
+      <app-even *ngFor="let num of evenNumbers" [evenNumber]="num"></app-even>
+    </div>
+  </section>
+</main>
